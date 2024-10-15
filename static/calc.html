@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+
+</head>
+
+<body>
+    <h1>计算器</h1>
+    数字1：<input id="num1" name="num1" type="text"><br>
+    数字2：<input id="num2" name="num2" type="text"><br>
+    <input type="button" value="点击相加" onclick="add()">(点击后就调用add())
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js">/*这个可能被插件挡住*/</script>
+    <script>
+        //包装成函数,可以在合适时间调用
+        function add() {
+            $.ajax({//键值对之间是逗号, 而语句之间是分号或者逗号
+                url: "http://127.0.0.1:8080/calc/sum",//url要是发送请求的url,可以是get, post
+                type:"post",//请求类型
+                data: {
+                    "num1": $("#num1").val(),//获取参数, javaScript的语法
+                    "num2": $("#num2").val()
+                },
+                success: function (result) {
+                    console.log(result);//浏览器控制台打印
+                    alert("Success");//弹窗
+                    location.href = "sum.html";//跳转链接, 这个链接需要是正确的, 并且对应页面的http请求是没问题的, 才能正确跳转
+                },
+                error: function (xhr, status, error) {
+                    alert("请求失败: " + error);//弹窗
+                    console.error("错误详情:", xhr, status, error);//打印日志
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

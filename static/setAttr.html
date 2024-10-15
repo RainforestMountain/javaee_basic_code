@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"><span>你好</span></div>
+<input type="text" value="hello">
+<script>
+    $(document).ready(function () {
+        var html = $("#test").html();
+        console.log("html内容为:"+html);
+        var text = $("#test").text();
+        console.log("⽂本内容为:"+text);
+        var inputVal = $("input").val();
+        console.log(inputVal);
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#test").html('<h1>设置html</h1>');
+        $("#test2").text('<h1>设置text</h1>');
+        $("input").val("设置内容");
+    });
+</script>
+
+<p><a href="https://www.bitejiuyeke.com/index" id="bite">⽐特就业课</a></p>
+<script>
+    $(function(){
+        var href = $("p a").attr("href")
+        console.log(href);
+    });
+</script>
+</body>
+</html>
